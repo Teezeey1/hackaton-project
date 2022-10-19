@@ -30,10 +30,13 @@ export class AlertComponent implements OnInit {
     this.alertService.getCovidInfoCounty(this._searchTextCounty).subscribe(
       info=>{this.info = info;
       //get last entry on info, aka with the newest date
-      this.lastEntry=this.info[this.info.length-1].covid_19_community_level;
-      if(this.lastEntry=="High"){alert("Covid Community Level High, Please stay safe")} 
-      else if (this.lastEntry=="Medium"){alert("Covid Community Level Medium, Please execuse caution")}
-      else{alert("Covid Community Level Low, have fun shopping")}
+      if(this.info.length==0){alert("Please input valid county")}
+      else{
+        this.lastEntry=this.info[this.info.length-1].covid_19_community_level;
+        if(this.lastEntry=="High"){alert("Covid Community Level High, Please stay safe")} 
+        else if (this.lastEntry=="Medium"){alert("Covid Community Level Medium, Please execuse caution")}
+        else{alert("Covid Community Level Low, have fun shopping")}
+      }
       }
     );
   }
